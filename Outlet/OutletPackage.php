@@ -22,9 +22,7 @@ class OutletPackage extends Package
 	 * Register package wiring.
 	 *
 	 * Creates a new component declaration named "outlet_service",
-	 * user needs to defined 2 constants:
-	 *	database.connection
-	 *  database.classes
+	 * user needs to define a pdo_service and classes + outlet.dialect constants
 	 *
 	 * @param IContainerBuilder $container
 	 */
@@ -33,7 +31,10 @@ class OutletPackage extends Package
 		$container->define('outlet_service')
 			->setClass('Outlet')
 			->addArgument('array', array(
-				'connection' => array('constant', 'database.connection'),
+				'connection' => array('array', array(
+					'pdo'     => array('component', 'pdo_service'),
+					'dialect' => array('constant', 'outlet.dialect')
+				)),
 				'classes'    => array('constant', 'database.classes'),
 			))->addMethod('createProxies');
 	}
