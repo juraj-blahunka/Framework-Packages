@@ -22,6 +22,10 @@ class TwigPackage extends Package
 			->setClass('Twig_Loader_Filesystem')
 			->addArgument('constant', 'view.paths');
 
+		$container->define('twig_escaper_service')
+			->setClass('Twig_Extension_Escaper')
+			->addArgument('value', true);
+
 		$container->define('twig_environment_service')
 			->setClass('Twig_Environment')
 			->setArguments(array(
@@ -31,7 +35,7 @@ class TwigPackage extends Package
 					'debug'       => array('constant', 'application.debug'),
 					'auto_reload' => array('constant', 'twig.options.auto_reload'),
 				)),
-			));
+			))->addMethod('addExtension', array(array('component', 'twig_escaper_service')));
 	}
 
 	function registerPaths()
