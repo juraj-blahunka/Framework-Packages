@@ -1,8 +1,9 @@
 Bachelor Thesis: Framework Extension Packages
 ---------------------------------------------
 
+A repository to enrich the Bachelor Thesis PHP framework's core package with other third party libraries.
 
-Repository contains these third party extensions so far:
+These third party extensions were added so far:
 
  - [Twig][1]
  - [Outlet][2]
